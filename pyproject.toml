@@ -1,0 +1,31 @@
+[project]
+name = "hcv-secrets-scanner"
+version = "0.1.0"
+description = "CLI tool that checks the integrity of your Hashicorp Vault secrets"
+authors = [{ name = "Brian Thompson", email = "brianrobt@pm.me" }]
+requires-python = ">=3.13"
+readme = "README.md"
+license = { text = "GPL-3.0-or-later" }
+dependencies = [
+    "typer",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/brianrobt/hcv-secrets-scanner"
+
+[tool.poetry]
+name = "hcv-secrets-scanner"
+version = "0.1.0"
+description = "CLI tool that checks the integrity of your Hashicorp Vault secrets"
+authors = ["Brian Thompson <brianrobt@pm.me>"]
+
+[tool.poetry.dependencies]
+python = ">=3.13,<4.0"
+typer = { extras = ["all"], version = "^0.7.0" }
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+hcv-secrets-scanner = "hcv_secrets_scanner.hcv_secrets_scanner:main"
