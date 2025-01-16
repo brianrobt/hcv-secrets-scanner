@@ -8,6 +8,7 @@ readme = "README.md"
 license = { text = "GPL-3.0-or-later" }
 dependencies = [
     "typer",
+    "requests"
 ]
 
 [project.urls]
@@ -28,4 +29,4 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-hcv-secrets-scanner = "hcv_secrets_scanner.hcv_secrets_scanner:main"
+hcvss = "hcvss.cli:app"

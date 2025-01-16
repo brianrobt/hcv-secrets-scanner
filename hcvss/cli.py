@@ -15,6 +15,12 @@ def check() -> None:
     hcvss.check_secrets('test_secrets.json')
 
 
+@app.command()
+def fetch() -> None:
+    """Fetch the secrets from HCP."""
+    hcvss.fetch_hcp_secrets()
+
+
 def _version_callback(value: bool) -> None:
     if value:
         typer.echo(f"{__app_name__} v{__version__}")

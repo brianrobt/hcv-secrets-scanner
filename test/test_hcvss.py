@@ -20,3 +20,9 @@ def test_check_command():
     result = runner.invoke(cli.app, ['check'])
     assert result.exit_code == 0
     assert "Secret test2 is too short: 5 characters" in result.output
+
+def test_fetch_command():
+    # Test the 'fetch' command
+    result = runner.invoke(cli.app, ['fetch'])
+    assert result.exit_code == 0
+    assert "Step1" in result.output

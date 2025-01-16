@@ -1,8 +1,8 @@
 """This module provides the Hashivault Secrets Scanner model-controller."""
 
-import subprocess
 import json
-
+import os
+import subprocess
 
 def check_secrets(file_path: str):
     """Check the secrets in the given file."""
@@ -21,7 +21,7 @@ def check_secrets(file_path: str):
     return messages
 
 
-def fetch_hcp_secrets(token: str) -> dict:
+def fetch_hcp_secrets() -> dict:
     """
     Fetch secrets from HCP using the provided token.
 
@@ -36,7 +36,8 @@ def fetch_hcp_secrets(token: str) -> dict:
         json.JSONDecodeError: If the response isn't valid JSON.
     """
     # Construct the curl command
-    url = "https://api.cloud.hashicorp.com/secrets/2023-11-28/organizations/0cf0027f-5b19-4671-9cfa-bf3a9a84bafb/projects/e9147846-dd0e-4c5e-b5a7-574719a160be/apps/sample-app/secrets:open"
+    token = generate_hcp_api_token(os.environ.get('HCP_CLIENT_ID'), os.environ.get('HCP_CLIENT_SECRET'))
+    url = "https://api.cloud.hashicorp.com/secrets/2023-11-28/organizations/0cf0027f-5b19-4671-9cfa-bf3a9a84bafb/projects/" + os.environ.get('HCP_PROJECT_ID') + "/apps/sample-app/secrets:open"
     cmd = [
         'curl',
         '--location', url,
@@ -50,7 +51,10 @@ def fetch_hcp_secrets(token: str) -> dict:
         # Use jq to format the JSON output (assuming jq is installed)
         jq_cmd = ['jq']
         json_output = subprocess.run(jq_cmd, input=result.stdout, capture_output=True, text=True, check=True).stdout
-        # Parse JSON output
+        # Parse JSON output, printing only enabled for testing purposes
+        with open('test_secrets.json', 'w') as f:
+            f.write(json_output)
+        print(json_output)
         return json.loads(json_output)
     except subprocess.CalledProcessError as e:
         # If curl or jq command fails, this exception will be raised
