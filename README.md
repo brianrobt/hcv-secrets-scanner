@@ -48,5 +48,4 @@ python -m hcvss check
 
 ```bash
 python -m hcvss fetch
-
 ```
