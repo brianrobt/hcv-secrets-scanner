@@ -16,6 +16,10 @@ dependencies = [
 [project.urls]
 "Homepage" = "https://github.com/brianrobt/hcv-secrets-scanner"
 
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.poetry]
 name = "hcv-secrets-scanner"
 version = "0.1.0"
@@ -26,9 +30,14 @@ authors = ["Brian Thompson <brianrobt@pm.me>"]
 python = ">=3.13,<4.0"
 typer = { extras = ["all"], version = "^0.7.0" }
 
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_scheme = "pep440"
+version_provider = "poetry"
+update_changelog_on_bump = true
+major_version_zero = true
 
 [tool.poetry.scripts]
 hcvss = "hcvss.cli:app"
