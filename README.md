@@ -14,7 +14,8 @@ time I spent on this project.
 git clone https://github.com/brianrobt/hcv-secrets-scanner.git
 cd hcv-secrets-scanner
 poetry install
-source .venv/bin/activate
+python -m venv myenv
+source myenv/bin/activate
 ```
 
 ## Getting Started

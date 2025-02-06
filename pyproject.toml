@@ -7,8 +7,10 @@ requires-python = ">=3.13"
 readme = "README.md"
 license = { text = "GPL-3.0-or-later" }
 dependencies = [
-    "typer",
-    "requests"
+    "hvac",
+    "hvac[parser]",
+    "requests",
+    "typer"
 ]
 
 [project.urls]
