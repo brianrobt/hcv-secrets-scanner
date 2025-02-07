@@ -5,8 +5,9 @@ HCVSS is a CLI tool that checks the integrity of your Hashicorp Vault secrets.
 > [!WARNING]
 > This project is currently under heavy development and may undergo significant changes. Use with caution in production environments.
 
-This project was adapted from the [rp-todo
-project](https://github.com/realpython/materials/tree/master/typer-cli-python/source_code_step_7).
+A large portion of the docstrings were taken from the [Hashicorp Vault
+documentation](https://www.vaultproject.io/docs/secrets/kv/kv-v2).  I recommend you read the official
+Vault documentation for more information on the API and alternative ways to interact with Vault.
 
 ## Installation
 
