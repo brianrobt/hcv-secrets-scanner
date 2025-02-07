@@ -32,6 +32,7 @@ With your Service Principal key, ID, and project ID set the following environmen
 export HCP_CLIENT_ID=<your-client-id>
 export HCP_CLIENT_SECRET=<your-client-secret>
 export HCP_PROJECT_ID=<your-project-id>
+export HCP_ORGANIZATION_ID=<your-organization-id>
 ```
 
 `hcvss` generates a new API token every time you run a command. Find more information on how to
