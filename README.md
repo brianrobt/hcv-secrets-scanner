@@ -1,12 +1,12 @@
 # hcv-secrets-scanner
 
-This is a very incomplete CLI utility that checks the integrity of your Hashicorp Vault secrets.
-The project's purpose is to be used as a learning tool for me to understand how to build a Python CLI with Typer.
+HCVSS is a CLI tool that checks the integrity of your Hashicorp Vault secrets.
+
+> [!WARNING]
+> This project is currently under heavy development and may undergo significant changes. Use with caution in production environments.
 
 This project was adapted from the [rp-todo
 project](https://github.com/realpython/materials/tree/master/typer-cli-python/source_code_step_7).
-I used Grok and Cursor to assist me with writing the code for the sake of reducing the amount of
-time I spent on this project.
 
 ## Installation
 
@@ -33,6 +33,7 @@ export HCP_CLIENT_ID=<your-client-id>
 export HCP_CLIENT_SECRET=<your-client-secret>
 export HCP_PROJECT_ID=<your-project-id>
 export HCP_ORGANIZATION_ID=<your-organization-id>
+export HCP_APP_NAME=<your-app-name>
 ```
 
 `hcvss` generates a new API token every time you run a command. Find more information on how to

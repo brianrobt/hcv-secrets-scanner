@@ -11,6 +11,7 @@ class SecretsScanner:
     def __init__(self):
         """Initialize the SecretsScanner."""
         self.secret_length = 20
+        self.base_url = "https://api.cloud.hashicorp.com/secrets/2023-11-28/organizations/" + os.environ.get('HCP_ORGANIZATION_ID') + "/projects/" + os.environ.get('HCP_PROJECT_ID') + "/apps/" + os.environ.get('HCP_APP_NAME')
 
     def check_secrets(self, file_path: str):
         """Check the secrets in the given file."""
@@ -39,7 +40,7 @@ class SecretsScanner:
         """
         # Construct the curl command
         token = self._generate_hcp_api_token(os.environ.get('HCP_CLIENT_ID'), os.environ.get('HCP_CLIENT_SECRET'))
-        url = "https://api.cloud.hashicorp.com/secrets/2023-11-28/organizations/0cf0027f-5b19-4671-9cfa-bf3a9a84bafb/projects/" + os.environ.get('HCP_PROJECT_ID') + "/apps/sample-app/secrets:open"
+        url = self.base_url + "/secrets:open"
         cmd = [
             'curl',
             '--location', url,
