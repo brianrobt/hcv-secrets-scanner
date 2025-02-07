@@ -1,5 +1,5 @@
 [project]
-name = "hcv-secrets-scanner"
+name = "hcvss"
 version = "0.1.0"
 description = "CLI tool that checks the integrity of your Hashicorp Vault secrets"
 authors = [{ name = "Brian Thompson", email = "brianrobt@pm.me" }]
