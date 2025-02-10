@@ -10,7 +10,7 @@ from .hcvss import SecretsScanner
 class HCVSSClient:
     """A client for interacting with the HCVSS project."""
 
-    def __init__(self, vault_token: str =None):
+    def __init__(self, vault_token: str = ""):
         """
         Initialize the HCVSS client.
 
@@ -272,7 +272,7 @@ class HCVSSClient:
             secret_mount_path (str): The path where the KV secrets engine is mounted.
             path (str): The path to the secret to patch.
             max_versions (int, optional): The number of versions to keep per key. If not set, the
-                backend’s configured max version is used. Once a key has more than the configured
+                backend's configured max version is used. Once a key has more than the configured
                 allowed versions, the oldest version will be permanently deleted.
             cas_required (bool, optional): If true, all keys will require the cas
                 parameter to be set on all write operations.  If false, the backend's configuration will

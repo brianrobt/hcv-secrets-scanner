@@ -11,7 +11,22 @@ class SecretsScanner:
     def __init__(self):
         """Initialize the SecretsScanner."""
         self.secret_length = 20
-        self.base_url = "https://api.cloud.hashicorp.com/secrets/2023-11-28/organizations/" + os.environ.get('HCP_ORGANIZATION_ID') + "/projects/" + os.environ.get('HCP_PROJECT_ID') + "/apps/" + os.environ.get('HCP_APP_NAME')
+
+        # Check for required environment variables
+        required_vars = ['HCP_ORGANIZATION_ID', 'HCP_PROJECT_ID', 'HCP_APP_NAME']
+        missing_vars = [var for var in required_vars if not os.environ.get(var)]
+
+        if missing_vars:
+            raise EnvironmentError(
+                f"Missing required environment variables: {', '.join(missing_vars)}"
+            )
+
+        self.base_url = (
+            "https://api.cloud.hashicorp.com/secrets/2023-11-28"
+            f"/organizations/{os.environ['HCP_ORGANIZATION_ID']}"
+            f"/projects/{os.environ['HCP_PROJECT_ID']}"
+            f"/apps/{os.environ['HCP_APP_NAME']}"
+        )
 
     def check_secrets(self, file_path: str):
         """Check the secrets in the given file."""
@@ -109,7 +124,7 @@ class SecretsScanner:
 
     def _get_secret_values(self, file_path):
         """
-        Get the 'value' field from each secret in the JSON data.
+        Get the value from each secret in the JSON data.
 
         Args:
             file_path: Path to the JSON file containing secrets data.
