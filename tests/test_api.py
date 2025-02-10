@@ -38,7 +38,6 @@ class TestSecretOperations:
         result = client.create_secret(
             secret_mount_path="secret",
             path="my-secret",
-            options={},
             cas=0,
             data={"password": "secret123"}
         )

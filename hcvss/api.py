@@ -43,6 +43,7 @@ class HCVSSClient:
             "cas_required": cas_required,
             "delete_version_after": delete_version_after
         }
+        # https://127.0.0.1:8200/v1/secret/data/my-secret
         response = requests.post(url, headers=self.headers, json=data)
 
     def read_kv_engine_config(self, secret_mount_path: str):
@@ -72,7 +73,7 @@ class HCVSSClient:
         response = requests.get(url, headers=self.headers)
         return response.json()
 
-    def create_secret(self, secret_mount_path: str, path: str, options: dict, cas: int, data: dict):
+    def create_secret(self, secret_mount_path: str, path: str, cas: int, data: dict):
         """
         Creates a new version of a secret at the specified location. If the value does not yet exist, the calling
         token must have an ACL policy granting the create capability. If the value already exists, the
@@ -81,7 +82,6 @@ class HCVSSClient:
         Args:
             secret_mount_path (str): The path where the KV secrets engine is mounted.
             path (str): The path to the secret to create.
-            options (dict): An object that holds options settings.
             cas (int): This flag is required if the backend is configured with cas_required set to true
                 on either the secret or the engine's config. If not set, write will be allowed. In order for
                 a write to be successful, cas must be set to the current version of the secret.  If set to 0,
@@ -92,7 +92,9 @@ class HCVSSClient:
             data (dict): The contents of the data dict will be stored and returned on read.
         """
         url = f"{self.secrets_scanner.base_url}/{secret_mount_path}/data/{path}"
-        response = requests.post(url, headers=self.headers, json=data)
+        options = {"cas": cas}
+        payload = {"options": options, "data": data}
+        response = requests.post(url, headers=self.headers, json=payload)
         return response.json()
 
     def patch_secret(self, secret_mount_path: str, path: str, options: dict, cas: int, data: dict):

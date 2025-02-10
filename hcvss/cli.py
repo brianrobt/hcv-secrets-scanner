@@ -4,7 +4,8 @@ from typing import Optional
 
 import typer
 
-from hcvss import __app_name__, __version__, hcvss
+from hcvss import __app_name__, __version__
+from .hcvss import SecretsScanner
 
 app = typer.Typer()
 
@@ -12,12 +13,14 @@ app = typer.Typer()
 @app.command()
 def check() -> None:
     """Check the secrets in the file."""
+    hcvss = SecretsScanner()
     hcvss.check_secrets('test_secrets.json')
 
 
 @app.command()
 def fetch() -> None:
     """Fetch the secrets from HCP."""
+    hcvss = SecretsScanner()
     hcvss.fetch_hcp_secrets()
 
 
