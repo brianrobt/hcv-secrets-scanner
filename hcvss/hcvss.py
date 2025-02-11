@@ -28,9 +28,9 @@ class SecretsScanner:
             f"/apps/{os.environ['HCP_APP_NAME']}"
         )
 
-    def check_secrets(self, file_path: str):
+    def check_secrets(self, filename: str):
         """Check the secrets in the given file."""
-        secrets = self._get_secret_values(file_path)
+        secrets = self._get_secret_values(filename)
 
         messages = []
 
@@ -42,7 +42,7 @@ class SecretsScanner:
 
         return messages
 
-    def fetch_hcp_secrets(self) -> dict:
+    def fetch_hcp_secrets(self, filename: str = "test_secrets.json") -> dict:
         """
         Fetch secrets from HCP using the provided token.
 
@@ -70,7 +70,7 @@ class SecretsScanner:
             jq_cmd = ['jq']
             json_output = subprocess.run(jq_cmd, input=result.stdout, capture_output=True, text=True, check=True).stdout
             # Parse JSON output, printing only enabled for testing purposes
-            with open('test_secrets.json', 'w') as f:
+            with open(filename, 'w') as f:
                 f.write(json_output)
             print(json_output)
             return json.loads(json_output)

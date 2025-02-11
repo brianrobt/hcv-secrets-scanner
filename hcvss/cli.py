@@ -25,10 +25,17 @@ def check(
 
 
 @app.command()
-def fetch() -> None:
+def fetch(
+    filename: str = typer.Option(
+        "test_secrets.json",
+        "--file",
+        "-f",
+        help="The secrets file to check"
+    )
+) -> None:
     """Fetch the secrets from HCP."""
     hcvss = SecretsScanner()
-    hcvss.fetch_hcp_secrets()
+    hcvss.fetch_hcp_secrets(filename)
 
 
 def _version_callback(value: bool) -> None:
