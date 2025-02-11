@@ -17,7 +17,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "hcv-secrets-scanner"
-version = "0.1.0"
+version = "0.2.0"
 description = "CLI tool that checks the integrity of your Hashicorp Vault secrets"
 authors = ["Brian Thompson <brianrobt@pm.me>"]
 

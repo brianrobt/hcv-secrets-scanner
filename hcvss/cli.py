@@ -11,10 +11,17 @@ app = typer.Typer()
 
 
 @app.command()
-def check() -> None:
+def check(
+    filename: str = typer.Option(
+        "test_secrets.json",
+        "--file",
+        "-f",
+        help="The secrets file to check"
+    )
+) -> None:
     """Check the secrets in the file."""
     hcvss = SecretsScanner()
-    hcvss.check_secrets('test_secrets.json')
+    hcvss.check_secrets(filename)
 
 
 @app.command()
